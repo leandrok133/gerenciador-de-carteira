@@ -12,7 +12,7 @@ from app import *
 # Checando se o book de transações existe
 ativos_org = {}
 try:    # caso exista, ler infos
-    df_book = pd.read_csv('book_data.csv', index_col=0)
+    df_book = pd.read_csv(r'assets\book_data.csv', index_col=0)
     ativos_org = iterar_sobre_df_book(df_book)
 except: # caso não exista, criar df
     df_book = pd.DataFrame(columns=['date', 'preco', 'tipo', 'ativo', 'exchange', 'vol', 'valor_total'])
@@ -21,7 +21,7 @@ df_book = format_dataframe(df_book, data_type_book)
     
 
 try:
-    df_historical_data = pd.read_csv('historical_data.csv', index_col=0)
+    df_historical_data = pd.read_csv(r'assets\historical_data.csv', index_col=0)
 except:
     df_historical_data = pd.DataFrame(columns=['date', 'symbol', 'close'])
 
@@ -89,7 +89,7 @@ def atualizar_databases(book_data, historical_data):
 
     df_historical = format_dataframe(df_historical, data_type_hist)
     
-    df_historical.to_csv('historical_data.csv')
+    df_historical.to_csv(r'assets\historical_data.csv')
 
     return df_historical.to_dict()
 
