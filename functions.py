@@ -71,21 +71,23 @@ def atualizar_historical_data(df_historical_var: pd.DataFrame, ativos_org_var={}
                                     end = str_previus_day,
                                     interval='1d'
                                 )[['Close']].reset_index()
+                    # Insere uma coluna com o nome do symbol
+                    new_line.insert(1, 'symbol', symbol)
+                    
+                    # Renomear todas as colunas para minúsculo
+                    new_line.columns = new_line.columns.str.lower()
+                    
+                    # Formata o dataframe
+                    new_line = format_dataframe(new_line, data_type_hist)
+                    
+                    # Adiciona os novos dados à base 
+                    df_historical_var = pd.concat([df_historical_var, new_line], ignore_index=True)
+                    
+                    #para encerrar o laço
                     nbr_try = 5
                 except:
                     nbr_try += 1
-            
-            # Insere uma coluna com o nome do symbol
-            new_line.insert(1, 'symbol', symbol)
-            
-            # Renomear todas as colunas para minúsculo
-            new_line.columns = new_line.columns.str.lower()
-            
-            # Formata o dataframe
-            new_line = format_dataframe(new_line, data_type_hist)
-            
-            # Adiciona os novos dados à base 
-            df_historical_var = pd.concat([df_historical_var, new_line], ignore_index=True)
+        
     
     # remove linhas duplicadas, dando preferência em manter as últimas linhas
     return df_historical_var.drop_duplicates(subset=['date', 'symbol'], keep='last')
