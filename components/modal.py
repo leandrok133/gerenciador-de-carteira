@@ -2,7 +2,7 @@ from dash import dcc, Input, Output, no_update, callback_context
 import dash_bootstrap_components as dbc
 from datetime import date
 
-from app import *
+from instance import *
 
 layout = dbc.Modal([
     dbc.ModalHeader(dbc.ModalTitle("Cadastro de ativos"), className='modal_header'),

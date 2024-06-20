@@ -7,7 +7,7 @@ from datetime import date
 
 from menu_styles import *
 from functions import *
-from app import *
+from instance import *
 
 layout = dbc.Container([
     dbc.Row([

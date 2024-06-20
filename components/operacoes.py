@@ -6,7 +6,7 @@ import json
 
 from components.modal import *
 from functions import *
-from app import *
+from instance import *
 
 
 card_sem_registros = dbc.Card([
