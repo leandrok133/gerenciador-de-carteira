@@ -3,6 +3,7 @@ import numpy as np
 from pandas.tseries.offsets import DateOffset
 from datetime import date, timedelta
 import yfinance as yf
+from pathlib import Path
 
 #offsets são deltas entre a data atual e o valor inserido no parametro
 offsets = [DateOffset(days=5), DateOffset(months=1), DateOffset(months=3), DateOffset(months=6), DateOffset(years=1), DateOffset(years=2)] 
@@ -194,7 +195,7 @@ def slice_df_timedeltas(df: pd.DataFrame, period_string: str) -> pd.DataFrame:
     return df
 
 try:
-    df_book_data = pd.read_csv(r'assets\book_data.csv', index_col=0)
+    df_book_data = pd.read_csv(Path(r'assets\book_data.csv'), index_col=0)
     df_compra_e_venda = df_book_data.groupby('tipo').sum()
 except:
     df_book = pd.DataFrame(columns=['date', 'preco', 'tipo', 'ativo', 'exchange', 'vol', 'valor_total'])

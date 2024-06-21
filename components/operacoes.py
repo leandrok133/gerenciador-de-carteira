@@ -3,11 +3,11 @@ from dash.dependencies import Input, Output, State, ALL
 import dash_bootstrap_components as dbc
 import pandas as pd
 import json
+from pathlib import Path
 
 from components.modal import *
 from functions import *
 from instance import *
-
 
 card_sem_registros = dbc.Card([
                         dbc.CardBody([
@@ -150,7 +150,7 @@ def func_modal(n1, n2, book_data, event, ativo, open, radio, preco, periodo, vol
                 df_book_data.reset_index(drop=True, inplace=True)
                 df_book_data = df_book_data.sort_values(by='date', ascending=True)
 
-                df_book_data.to_csv(r'assets\book_data.csv')
+                df_book_data.to_csv(Path(r'assets\book_data.csv'))
                 book_data = df_book_data.to_dict()
                 
                 lista_de_cards = generate_list_of_cards(df_book_data)
@@ -172,7 +172,7 @@ def func_modal(n1, n2, book_data, event, ativo, open, radio, preco, periodo, vol
         df_book_data.drop([str(trigg_id['index'])], inplace=True)
         df_book_data.reset_index(drop=True, inplace=True)
         df_book_data = df_book_data.sort_values(by='date', ascending=True)
-        df_book_data.to_csv(r'assets\book_data.csv')
+        df_book_data.to_csv(Path(r'assets\book_data.csv'))
         book_data = df_book_data.to_dict()
         lista_de_cards = generate_list_of_cards(df_book_data)
 
