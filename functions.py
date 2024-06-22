@@ -3,7 +3,6 @@ import numpy as np
 from pandas.tseries.offsets import DateOffset
 from datetime import date, timedelta
 import yfinance as yf
-from pathlib import Path
 
 #offsets são deltas entre a data atual e o valor inserido no parametro
 offsets = [DateOffset(days=5), DateOffset(months=1), DateOffset(months=3), DateOffset(months=6), DateOffset(years=1), DateOffset(years=2)] 
