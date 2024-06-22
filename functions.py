@@ -194,10 +194,4 @@ def slice_df_timedeltas(df: pd.DataFrame, period_string: str) -> pd.DataFrame:
     df = df[df.date > correct_timedelta].sort_values('date')
     return df
 
-try:
-    df_book_data = pd.read_csv(Path(r'assets\book_data.csv'), index_col=0)
-    df_compra_e_venda = df_book_data.groupby('tipo').sum()
-except:
-    df_book = pd.DataFrame(columns=['date', 'preco', 'tipo', 'ativo', 'exchange', 'vol', 'valor_total'])
-
 
